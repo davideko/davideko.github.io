@@ -1283,6 +1283,471 @@ You must replace <code>token</code> with your personal API key.
 </tr>
 </tbody></table>
 
+          <h1 id="premiums-coverages">Premiums Coverages</h1>
+
+<h2 id="get-premiums-coverages">Get Premiums Coverages</h2>
+
+<p>This endpoint used to return all premiums coverages</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums-coverages"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"premiumsCoverages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">400000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">500000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASCO"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/coverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASCO"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2/coverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TPL"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@3"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@3/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@3/coverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TPL"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@4"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@4/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@4/coverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/premiums-coverages</code></p>
+
+          <h2 id="get-a-premiums-coverages">Get a Premiums Coverages</h2>
+
+<p>This endpoint get a premium coverages by composite id.</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-04"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">400000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">500000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASCO"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/premium"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/coverage"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/premiums-coverages/&lt;compositeId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>compositeId</td>
+<td>It was composed by premium id + &ldquo;@&rdquo; + coverage id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="add-new-premiums-coverages">Add New Premiums Coverages</h2>
+
+<p>This endpoint used to add new premiums coverages</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums-coverages"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "premiumCoveragePk":{
+            "premium":"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c",
+            "coverage":"http://localhost:8080/api/coverages/2"
+        },
+        "coverageBeginningDate":"2015-06-04",
+        "coverageExpiryDate":"2015-10-04",
+        "totalSumInsured":100000,
+        "thirdPartyLiability":100000
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04T00:00:00.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-04T00:00:00.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASCO"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2/premium"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2/coverage"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://localhost:8080/api/premiums-coverages</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>premiumCoveragePk</td>
+<td>Composite object key</td>
+</tr>
+<tr>
+<td>premium</td>
+<td>Fill with premium object url id</td>
+</tr>
+<tr>
+<td>coverage</td>
+<td>Fill with coverage object url id</td>
+</tr>
+<tr>
+<td>coverageBeginningDate</td>
+<td>Fill with coverage beginning date</td>
+</tr>
+<tr>
+<td>coverageExpiryDate</td>
+<td>Fill with coverage expiry date</td>
+</tr>
+<tr>
+<td>totalSumInsured</td>
+<td>Fill with total sum insured value</td>
+</tr>
+<tr>
+<td>thirdPartyLiability</td>
+<td>Fill with third party liability value</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-premiums-coverages">Update Premiums Coverages</h2>
+
+<p>This endpoint used to update a premiums coverages object. It can update using <code>PUT</code> for full update or <code>PATCH</code> for partial update</p>
+
+<blockquote>
+<p>Sample request PUT</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "coverageBeginningDate":"2015-06-04",
+        "coverageExpiryDate":"2017-10-04",
+        "totalSumInsured":400000,
+        "thirdPartyLiability":500000
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample request PATCH</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1"</span>
+  -X PATCH
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "thirdPartyLiability":500000
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04T00:00:00.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-04T00:00:00.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">400000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">500000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASCO"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/premium"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/coverage"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://localhost:8080/api/premiums-coverages/&lt;compositeId&gt;</code></p>
+
+<p><code class="prettyprint">PATCH http://localhost:8080/api/premiums-coverages/&lt;compositeId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>compositeId</td>
+<td>It was composed by premium id + &ldquo;@&rdquo; + coverage id</td>
+</tr>
+</tbody></table>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>premiumCoveragePk</td>
+<td>Composite object key</td>
+</tr>
+<tr>
+<td>premium</td>
+<td>Fill with premium object url id</td>
+</tr>
+<tr>
+<td>coverage</td>
+<td>Fill with coverage object url id</td>
+</tr>
+<tr>
+<td>coverageBeginningDate</td>
+<td>Fill with coverage beginning date</td>
+</tr>
+<tr>
+<td>coverageExpiryDate</td>
+<td>Fill with coverage expiry date</td>
+</tr>
+<tr>
+<td>totalSumInsured</td>
+<td>Fill with total sum insured value</td>
+</tr>
+<tr>
+<td>thirdPartyLiability</td>
+<td>Fill with third party liability value</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-specific-premiums-coverages">Delete a Specific Premiums Coverages</h2>
+
+<p>This endpoint delete premiums coverages object by composite id</p>
+
+<blockquote>
+<p>Sample request </p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://localhost:8080/api/premiums-coverages/&lt;compositeId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>compositeId</td>
+<td>It was composed by premium id + &ldquo;@&rdquo; + coverage id</td>
+</tr>
+</tbody></table>
+
           <h1 id="insureds">Insureds</h1>
 
 <h2 id="get-all-insureds">Get All Insureds</h2>
@@ -1359,19 +1824,19 @@ You must replace <code>token</code> with your personal API key.
 <blockquote>
 <p>Success response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <blockquote>
@@ -1382,8 +1847,7 @@ You must replace <code>token</code> with your personal API key.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="http-request">HTTP Request</h3>
-
+HTTP Request
 <p><code class="prettyprint">GET http://localhost:8080/api/insureds/&lt;insuredId&gt;</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
@@ -1660,56 +2124,56 @@ You must replace <code>token</code> with your personal API key.
 <blockquote>
 <p>Success response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"policies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-03"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2b46fc11-8f45-43ac-a305-fbe1be4b7dae"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/policies/2b46fc11-8f45-43ac-a305-fbe1be4b7dae{?projection}"</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-                        </span><span class="p">},</span><span class="w">
-                        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"policies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-03"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2b46fc11-8f45-43ac-a305-fbe1be4b7dae"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-03"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a0d5fdb-88c8-473b-a210-41afbd6263e2"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe West"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bekasi"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218861234"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0855778899"</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this@test.com"</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/policies/2b46fc11-8f45-43ac-a305-fbe1be4b7dae{?projection}"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
                     </span><span class="p">},</span><span class="w">
-                    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/policies/5a0d5fdb-88c8-473b-a210-41afbd6263e2{?projection}"</span><span class="p">,</span><span class="w">
-                            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-                        </span><span class="p">},</span><span class="w">
-                        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
+                    </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-03"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a0d5fdb-88c8-473b-a210-41afbd6263e2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe West"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bekasi"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218861234"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0855778899"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this@test.com"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/policies/5a0d5fdb-88c8-473b-a210-41afbd6263e2{?projection}"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <blockquote>
@@ -1720,7 +2184,7 @@ You must replace <code>token</code> with your personal API key.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="http-request">HTTP Request</h3>
+HTTP Request</h3>
 
 <p><code class="prettyprint">GET http://localhost:8080/api/policies</code></p>
 
