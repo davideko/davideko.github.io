@@ -1,0 +1,2511 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the Umbrella API !</p>
+
+          <h1 id="authentication">Authentication</h1>
+
+<p>Umbrella API uses API <code>token</code> to access for required authentication&rsquo;s resources. Umbrella API expect API <code>token</code> to be included in all API requests to the server in request that look s like following:</p>
+
+<p><code>curl -H &quot;Authorization: Bearer <code>token</code>&ldquo; -d &quot;data&rdquo;</code></p>
+
+<aside class="notice">
+You must replace <code>token</code> with your personal API key.
+</aside>
+
+<h2 id="get-api-token">Get API Token</h2>
+
+<p>This endpoint used to retrieve API <code>token</code></p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/oauth/token"</span>
+  -X POST
+  -u &lt;clientId&gt;:&lt;clientSecret&gt;
+  -d <span class="s2">"grant_type=password&amp;username=&lt;user_username&gt;&amp;password=&lt;user_password&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7f9471ff-5d7b-4aee-92ca-f13d9c66c37a"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"refresh_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d5b09ce9-0a3a-404b-b754-fcea309256ac"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">3599</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"write"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1433945751615</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unauthorized"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad credentials"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/oauth/token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://localhost:8080/oauth/token</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clientId</td>
+<td>Used in basic auth, fill with client id</td>
+</tr>
+<tr>
+<td>clientSecret</td>
+<td>Used in basic auth, fill with client secret</td>
+</tr>
+<tr>
+<td>grant_type</td>
+<td>Fill grant type with password</td>
+</tr>
+<tr>
+<td>username</td>
+<td>Fill with your username</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Fill with your password</td>
+</tr>
+</tbody></table>
+
+<h2 id="refresh-token">Refresh Token</h2>
+
+<p>This endpoint used to retrieve API <code>token</code> using <code>refresh_token</code>.</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/oauth/token"</span>
+  -X POST
+  -u &lt;clientId&gt;:&lt;clientSecret&gt;
+  -d <span class="s2">"grant_type=refresh_token&amp;refresh_token=&lt;refresh_token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0b3e6652-a520-4440-a0e5-ac0c222bdde8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refresh_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d5b09ce9-0a3a-404b-b754-fcea309256ac"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">3599</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"write"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1433945751615</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">401</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unauthorized"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad credentials"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/oauth/token"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://localhost:8080/oauth/token</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>grant_type</td>
+<td>Set to refresh_token</td>
+</tr>
+<tr>
+<td>refresh_token</td>
+<td>Fill with refresh token from request token</td>
+</tr>
+</tbody></table>
+
+          <h1 id="premiums">Premiums</h1>
+
+<h2 id="get-all-premiums">Get All Premiums</h2>
+
+<p>This endpoint used to return all premiums</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums{?page,size,sort}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"premiums"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"vehicleSerieType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRV"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"vehicleAssemblyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"vehicleColorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2007"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"vehicleId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"937d15ef-2c04-40de-a5e6-3a34d5031345"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MHRGD38207J700989"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L15A24001878"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B 1234 ABC"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A113344556677"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2b46fc11-8f45-43ac-a305-fbe1be4b7dae"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-03"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumCoverage"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumStatus"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumOwnRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumOwnRisk"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumExtendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumExtendedCoverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"vehicleSerieType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRV"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"vehicleAssemblyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"vehicleColorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"vehicleId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa6a0d05-b700-47d8-abf9-1e19b250fd71"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QWERTY45098D477543"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H89D11547634"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D 5678 DEF"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B778899445566"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a0d5fdb-88c8-473b-a210-41afbd6263e2"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe West"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bekasi"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218861234"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0855778899"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this@test.com"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-03"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80/premiumCoverage"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80/premiumStatus"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumOwnRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80/premiumOwnRisk"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumExtendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80/premiumExtendedCoverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalElements"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalPages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/premiums</code></p>
+
+          <h2 id="search-premium">Search Premium</h2>
+
+<p>This endpoint can filter by <code>policyNumber</code>,<code>engineNumber</code>,<code>plateNumber</code>,<code>chassisNumber</code>,<code>certificateNumber</code>, and <code>insuredName</code>.</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums/search?query=policyNumber:5a0d5fdb-88c8-473b-a210-41afbd6263e2"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/search?query=policyNumber:5a0d5fdb-88c8-473b-a210-41afbd6263e2{&amp;page,size,sort}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"premiums"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"vehicleSerieType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRV"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"vehicleAssemblyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"vehicleColorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"vehicleId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa6a0d05-b700-47d8-abf9-1e19b250fd71"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QWERTY45098D477543"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H89D11547634"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D 5678 DEF"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B778899445566"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a0d5fdb-88c8-473b-a210-41afbd6263e2"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe West"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bekasi"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218861234"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0855778899"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this@test.com"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-03"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80/premiumCoverage"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80/premiumStatus"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumOwnRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80/premiumOwnRisk"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premiumExtendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/4c5977df-3cdd-49c1-a0d4-e0c147e8df80/premiumExtendedCoverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalElements"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalPages"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint using <code>:</code> as a separator between <code>key</code> and <code>value</code>.</p>
+
+<p>In case that need more than one <code>key</code> you can use <code>,</code> as a separator between <code>key</code>.</p>
+
+<p>For example:</p>
+
+<p><code class="prettyprint">?query=policyNumber:5a0d5fdb-88c8-473b-a210-41afbd6263e2,engineNumber:L15A24001878</code></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/premiums/search?query=&lt;selected-filter-key&gt;:&lt;selected-filter-value&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>policyNumber</td>
+<td>Inserted policy number</td>
+</tr>
+<tr>
+<td>engineNumber</td>
+<td>Inserted engine number</td>
+</tr>
+<tr>
+<td>plateNumber</td>
+<td>Inserted plate number</td>
+</tr>
+<tr>
+<td>chassisNumber</td>
+<td>Inserted chassis number</td>
+</tr>
+<tr>
+<td>certificateNumber</td>
+<td>Inserted certificate number</td>
+</tr>
+<tr>
+<td>insuredName</td>
+<td>Inserted insured name</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-a-specific-premium">Get a Specific Premium</h2>
+
+<p>This endpoint get premium by <code>premiumId</code></p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"vehicleSerieType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRV"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"vehicleAssemblyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"vehicleColorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2007"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vehicleId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"937d15ef-2c04-40de-a5e6-3a34d5031345"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MHRGD38207J700989"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L15A24001878"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B 1234 ABC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A113344556677"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2b46fc11-8f45-43ac-a305-fbe1be4b7dae"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-03"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/vehicle"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/policy"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premiumCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumCoverage"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premiumStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumStatus"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premiumOwnRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumOwnRisk"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premiumExtendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumExtendedCoverage"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/premiums/&lt;premiumId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>premiumId</td>
+<td>Selected premium id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-a-specific-premium-coverage">Get a Specific Premium Coverage</h2>
+
+<p>This endpoint get premium coverage by <code>premiumId</code></p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumCoverage"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"premiumsCoverages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TPL"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@3"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@3/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@3/coverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TPL"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@4"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@4/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@4/coverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASCO"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2/coverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"coverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalSumInsured"</span><span class="p">:</span><span class="w"> </span><span class="mi">400000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"thirdPartyLiability"</span><span class="p">:</span><span class="w"> </span><span class="mi">500000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"coverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASCO"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"coverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/coverage"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/premiums/&lt;premiumId&gt;/premiumCoverage</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>premiumId</td>
+<td>Selected premium id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-a-specific-premium-extended-coverage">Get a Specific Premium Extended Coverage</h2>
+
+<p>This endpoint get premium extended coverage by <code>premiumId</code></p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumExtendedCoverage"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"premiumsExtendedCoverages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"extendedCoverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"extendedCoverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"extendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extendedCoverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flood"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-extended-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"extendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-extended-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2/extendedCoverage"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-extended-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@2/premium"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"extendedCoverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"extendedCoverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"extendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extendedCoverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Earthquake"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-extended-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@3"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"extendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-extended-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@3/extendedCoverage"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-extended-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@3/premium"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"extendedCoverageBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"extendedCoverageExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"extendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extendedCoverageType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comprehensive"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-extended-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"extendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-extended-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/extendedCoverage"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-extended-coverages/1ffc0022-6e51-43b3-b4b5-649634fd086c@1/premium"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/premiums/&lt;premiumId&gt;/premiumExtendedCoverage</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>premiumId</td>
+<td>Selected premium id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-a-specific-premium-own-risk">Get a Specific Premium Own Risk</h2>
+
+<p>This endpoint get premium own risk by <code>premiumId</code></p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumOwnRisk"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"premiumsOwnRisks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"ownRiskDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20 % Claim Minimum"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"ownRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ownRiskType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flood"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-own-risks/1ffc0022-6e51-43b3-b4b5-649634fd086c@ae566760-93b2-4267-a75f-f1743a11af80"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-own-risks/1ffc0022-6e51-43b3-b4b5-649634fd086c@ae566760-93b2-4267-a75f-f1743a11af80/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"ownRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-own-risks/1ffc0022-6e51-43b3-b4b5-649634fd086c@ae566760-93b2-4267-a75f-f1743a11af80/ownRisk"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"ownRiskDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10 % Claim Minimum"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"ownRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ownRiskType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Earthquake"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-own-risks/1ffc0022-6e51-43b3-b4b5-649634fd086c@f3409adb-3354-4a31-a742-4cb4a9de2099"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-own-risks/1ffc0022-6e51-43b3-b4b5-649634fd086c@f3409adb-3354-4a31-a742-4cb4a9de2099/premium"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"ownRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums-own-risks/1ffc0022-6e51-43b3-b4b5-649634fd086c@f3409adb-3354-4a31-a742-4cb4a9de2099/ownRisk"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/premiums/&lt;premiumId&gt;/premiumOwnRisk</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>premiumId</td>
+<td>Selected premium id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="get-a-specific-premium-status">Get a Specific Premium Status</h2>
+
+<p>This endpoint get premium status by <code>premiumId</code></p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumStatus"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"premiumStatusType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premium-statuses/1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/premiums/&lt;premiumId&gt;/premiumStatus</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>premiumId</td>
+<td>Selected premium id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="add-new-premium">Add New Premium</h2>
+
+<p>This endpoint used to add new premium</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "extentionCausal":"cause",
+        "policy":"http://localhost:8080/api/policies/2b46fc11-8f45-43ac-a305-fbe1be4b7dae",
+        "vehicle":"http://localhost:8080/api/insureds/937d15ef-2c04-40de-a5e6-3a34d5031345",
+        "premiumStatus":"http://localhost:8080/api/premium-statuses/1"
+     }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cause"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicleSerieType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRV"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicleAssemblyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicleColorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2007"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"vehicleId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"937d15ef-2c04-40de-a5e6-3a34d5031345"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MHRGD38207J700989"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L15A24001878"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B 1234 ABC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A113344556677"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2b46fc11-8f45-43ac-a305-fbe1be4b7dae"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-03"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/40e4e490-a0e8-4983-b3bb-adc7e0192d00"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/40e4e490-a0e8-4983-b3bb-adc7e0192d00/vehicle"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/40e4e490-a0e8-4983-b3bb-adc7e0192d00/policy"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"premiumCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/40e4e490-a0e8-4983-b3bb-adc7e0192d00/premiumCoverage"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"premiumStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/40e4e490-a0e8-4983-b3bb-adc7e0192d00/premiumStatus"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"premiumOwnRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/40e4e490-a0e8-4983-b3bb-adc7e0192d00/premiumOwnRisk"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"premiumExtendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/40e4e490-a0e8-4983-b3bb-adc7e0192d00/premiumExtendedCoverage"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://localhost:8080/api/premiums</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>extentionCausal</td>
+<td>Fill with extention causal</td>
+</tr>
+<tr>
+<td>policy</td>
+<td>Fill with policyobject url id</td>
+</tr>
+<tr>
+<td>vehicle</td>
+<td>Fill with vehicle object url id</td>
+</tr>
+<tr>
+<td>premiumStatus</td>
+<td>Fill with premiumStatus object url id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-premium">Update Premium</h2>
+
+<p>This endpoint used to update a premium object. It can update using <code>PUT</code> for full update or <code>PATCH</code> for partial update.</p>
+
+<blockquote>
+<p>Sample request PUT</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "extentionCausal":"new cause",
+        "policy":"http://localhost:8080/api/policies/2b46fc11-8f45-43ac-a305-fbe1be4b7dae",
+        "vehicle":"http://localhost:8080/api/insureds/937d15ef-2c04-40de-a5e6-3a34d5031345",
+        "premiumStatus":"http://localhost:8080/api/premium-statuses/1"
+     }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample request PATCH</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c"</span>
+  -X PATCH
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "extentionCausal":"New cause"
+     }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"extentionCausal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New cause"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"vehicleSerieType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRV"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"vehicleAssemblyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"vehicleColorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2007"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vehicleId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"937d15ef-2c04-40de-a5e6-3a34d5031345"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MHRGD38207J700989"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L15A24001878"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B 1234 ABC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A113344556677"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2b46fc11-8f45-43ac-a305-fbe1be4b7dae"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-03"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/vehicle"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/policy"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premiumCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumCoverage"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premiumStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumStatus"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premiumOwnRisk"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumOwnRisk"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"premiumExtendedCoverage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c/premiumExtendedCoverage"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://localhost:8080/api/premiums/&lt;premiumId&gt;</code></p>
+
+<p><code class="prettyprint">PATCH http://localhost:8080/api/premiums/&lt;premiumId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>premiumId</td>
+<td>Selected premium id</td>
+</tr>
+</tbody></table>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>extentionCausal</td>
+<td>Fill with extention causal</td>
+</tr>
+<tr>
+<td>policy</td>
+<td>Fill with policy object url id</td>
+</tr>
+<tr>
+<td>vehicle</td>
+<td>Fill with vehicle object url id</td>
+</tr>
+<tr>
+<td>premiumStatus</td>
+<td>Fill with premiumStatus object url id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-specific-premium">Delete a Specific Premium</h2>
+
+<p>This endpoint delete premium object by <code>premiumId</code></p>
+
+<blockquote>
+<p>Sample request </p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/premiums/1ffc0022-6e51-43b3-b4b5-649634fd086c"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://localhost:8080/api/premiums/&lt;premiumId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>premiumId</td>
+<td>Selected premium id</td>
+</tr>
+</tbody></table>
+
+          <h1 id="insureds">Insureds</h1>
+
+<h2 id="get-all-insureds">Get All Insureds</h2>
+
+<p>This endpoint used to return all insureds</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/insureds"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"insureds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe West"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bekasi"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218861234"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0855778899"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this@test.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/insureds</code></p>
+
+          <h2 id="get-a-specific-insured">Get a Specific Insured</h2>
+
+<p>This endpoint get insured by <code>insuredId</code></p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/insureds/&lt;insuredId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>insuredId</td>
+<td>Selected insured id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="add-new-insured">Add New Insured</h2>
+
+<p>This endpoint used to add new insured</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/insureds"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "insuredName":"Joe West",
+        "insuredAddress":"Bekasi",
+        "insuredPhone":"0218861234",
+        "insuredFax":"12345678",
+        "insuredHandphone":"0855778899",
+        "insuredEmail":"this@test.com"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe West"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bekasi"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218861234"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0855778899"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this@test.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://localhost:8080/api/insureds</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>insuredName</td>
+<td>Fill with insured name</td>
+</tr>
+<tr>
+<td>insuredAddress</td>
+<td>Fill with insured address</td>
+</tr>
+<tr>
+<td>insuredPhone</td>
+<td>Fill with insured phone</td>
+</tr>
+<tr>
+<td>insuredFax</td>
+<td>Fill with insured fax</td>
+</tr>
+<tr>
+<td>insuredHandphone</td>
+<td>Fill with insured handphone</td>
+</tr>
+<tr>
+<td>insuredEmail</td>
+<td>Fill with insured email</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-insured">Update Insured</h2>
+
+<p>This endpoint used to update a insured object. It can update using <code>PUT</code> for full update or <code>PATCH</code> for partial update</p>
+
+<blockquote>
+<p>Sample request PUT</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "insuredName":"Joe West",
+        "insuredAddress":"Bandung",
+        "insuredPhone":"0218861234",
+        "insuredFax":"12345678",
+        "insuredHandphone":"0855778899",
+        "insuredEmail":"this@test.com"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample request PATCH</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span>
+  -X PATCH
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "insuredAddress":"Bandung"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe West"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bandung"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218861234"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0855778899"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this@test.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://localhost:8080/api/insureds/&lt;insuredId&gt;</code></p>
+
+<p><code class="prettyprint">PATCH http://localhost:8080/api/insureds/&lt;insuredId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>insuredId</td>
+<td>Selected insured id</td>
+</tr>
+</tbody></table>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>insuredName</td>
+<td>Fill with insured name</td>
+</tr>
+<tr>
+<td>insuredAddress</td>
+<td>Fill with insured address</td>
+</tr>
+<tr>
+<td>insuredPhone</td>
+<td>Fill with insured phone</td>
+</tr>
+<tr>
+<td>insuredFax</td>
+<td>Fill with insured fax</td>
+</tr>
+<tr>
+<td>insuredHandphone</td>
+<td>Fill with insured handphone</td>
+</tr>
+<tr>
+<td>insuredEmail</td>
+<td>Fill with insured email</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-specific-insured">Delete a Specific Insured</h2>
+
+<p>This endpoint delete insured object by <code>insuredId</code></p>
+
+<blockquote>
+<p>Sample request </p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://localhost:8080/api/insureds/&lt;insuredId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>insuredId</td>
+<td>Selected insured id</td>
+</tr>
+</tbody></table>
+
+          <h1 id="policies">Policies</h1>
+
+<h2 id="get-all-policies">Get All Policies</h2>
+
+<p>This endpoint used to return all policies</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/policies"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"policies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-03"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2b46fc11-8f45-43ac-a305-fbe1be4b7dae"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/policies/2b46fc11-8f45-43ac-a305-fbe1be4b7dae{?projection}"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-03"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"policyNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a0d5fdb-88c8-473b-a210-41afbd6263e2"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe West"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bekasi"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218861234"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0855778899"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this@test.com"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/policies/5a0d5fdb-88c8-473b-a210-41afbd6263e2{?projection}"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/policies</code></p>
+
+          <h2 id="get-a-specific-policy">Get a Specific Policy</h2>
+
+<p>This endpoint get policy by <code>policyNumber</code></p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/policies/2b46fc11-8f45-43ac-a305-fbe1be4b7dae"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-03"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/policies/2b46fc11-8f45-43ac-a305-fbe1be4b7dae{?projection}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/policies/&lt;policyNumber&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>policyNumber</td>
+<td>Selected policy number</td>
+</tr>
+</tbody></table>
+
+          <h2 id="add-new-policy">Add New Policy</h2>
+
+<p>This endpoint used to add new policy</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/policies"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "policyBeginningDate":"2015-06-03",
+        "policyExpiryDate":"2017-06-03",
+        "insured":"http://localhost:8080/api/insureds/f3f5cc63-3c83-48ac-b05d-73ea882a3208"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03T00:00:00.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-03T00:00:00.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/policies/9e78484f-8f79-4124-867c-9f3c079a7522{?projection}"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://localhost:8080/api/policies</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>policyBeginningDate</td>
+<td>Fill with policy beginning date</td>
+</tr>
+<tr>
+<td>policyExpiryDate</td>
+<td>Fill with policy expiry date</td>
+</tr>
+<tr>
+<td>insured</td>
+<td>Fill with insured object url id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-policy">Update Policy</h2>
+
+<p>This endpoint used to update a policy object. It can update using <code>PUT</code> for full update or <code>PATCH</code> for partial update</p>
+
+<blockquote>
+<p>Sample request PUT</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/policies/9e78484f-8f79-4124-867c-9f3c079a7522"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "policyBeginningDate":"2015-06-03",
+        "policyExpiryDate":"2020-06-03",
+        "insured":"http://localhost:8080/api/insureds/f3f5cc63-3c83-48ac-b05d-73ea882a3208"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample request PATCH</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/policies/9e78484f-8f79-4124-867c-9f3c079a7522"</span>
+  -X PATCH
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "policyExpiryDate":"2020-06-03"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"policyBeginningDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-03T00:00:00.000+0000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"policyExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-03T00:00:00.000+0000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/policies/9e78484f-8f79-4124-867c-9f3c079a7522{?projection}"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"insured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://localhost:8080/api/policies/&lt;policyNumber&gt;</code></p>
+
+<p><code class="prettyprint">PATCH http://localhost:8080/api/policies/&lt;policyNumber&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>policyNumber</td>
+<td>Selected policy number</td>
+</tr>
+</tbody></table>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>policyBeginningDate</td>
+<td>Fill with policy beginning date</td>
+</tr>
+<tr>
+<td>policyExpiryDate</td>
+<td>Fill with policy expiry date</td>
+</tr>
+<tr>
+<td>insured</td>
+<td>Fill with insured object url id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-specific-policy">Delete a Specific Policy</h2>
+
+<p>This endpoint delete insured object by <code>policyNumber</code></p>
+
+<blockquote>
+<p>Sample request </p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/policies/9e78484f-8f79-4124-867c-9f3c079a7522"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://localhost:8080/api/policies/&lt;policyNumber&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>policyNumber</td>
+<td>Selected policy number</td>
+</tr>
+</tbody></table>
+
+          <h1 id="vehicles">Vehicles</h1>
+
+<h2 id="get-all-vehicles">Get All Vehicles</h2>
+
+<p>This endpoint used to return all vehicles</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/vehicles"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vehicles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B 1234 ABC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A113344556677"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L15A24001878"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MHRGD38207J700989"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2007"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicleAssemblyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicleSerieType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRV"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicleColorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"vehicleId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"937d15ef-2c04-40de-a5e6-3a34d5031345"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicles/937d15ef-2c04-40de-a5e6-3a34d5031345{?projection}"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-assemblies/1"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-colors/1"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-series/1{?projection}"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D 5678 DEF"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B778899445566"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H89D11547634"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QWERTY45098D477543"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicleAssemblyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicleSerieType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CRV"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"vehicleColorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blue"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"vehicleId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fa6a0d05-b700-47d8-abf9-1e19b250fd71"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicles/fa6a0d05-b700-47d8-abf9-1e19b250fd71{?projection}"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-assemblies/1"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-colors/1"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-series/1{?projection}"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/vehicles</code></p>
+
+          <h2 id="get-a-specific-vehicle">Get a Specific Vehicle</h2>
+
+<p>This endpoint get vehicle by <code>vehicleId</code></p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/vehicles/937d15ef-2c04-40de-a5e6-3a34d5031345"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L15A24001878"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MHRGD38207J700989"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A113344556677"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B 1234 ABC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2007"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicles/937d15ef-2c04-40de-a5e6-3a34d5031345{?projection}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-assemblies/1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-colors/1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-series/1{?projection}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/vehicles/&lt;vehicleId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vehicleId</td>
+<td>Selected vehicle id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="add-new-vehicle">Add New Vehicle</h2>
+
+<p>This endpoint used to add new vehicle</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/vehicles"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "engineNumber":"R27T54318876",
+        "chassisNumber":"ASDFG12309Y877458",
+        "certificateNumber":"B4352282728928",
+        "plateNumber":"B 7788 KKK",
+        "yearModel":"2010",
+        "vehicleSerie": "http://localhost:8080/api/vehicle-series/1",
+        "vehicleColor" : "http://localhost:8080/api/vehicle-colors/1",
+        "vehicleAssembly":"http://localhost:8080/api/vehicle-assemblies/1"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R27T54318876"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASDFG12309Y877458"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B4352282728928"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B 7788 KKK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicles/fa6a0d05-b700-47d8-abf9-1e19b250fd71{?projection}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-assemblies/1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-colors/1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-series/1{?projection}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://localhost:8080/api/vehicles</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>engineNumber</td>
+<td>Fill with vehicle engine number</td>
+</tr>
+<tr>
+<td>chassisNumber</td>
+<td>Fill with vehicle chassis number</td>
+</tr>
+<tr>
+<td>certificateNumber</td>
+<td>Fill with vehicle certificate number</td>
+</tr>
+<tr>
+<td>plateNumber</td>
+<td>Fill with vehicle plate number</td>
+</tr>
+<tr>
+<td>yearModel</td>
+<td>Fill with vehicle year model</td>
+</tr>
+<tr>
+<td>vehicleAssembly</td>
+<td>Fill with vehicleAssembly object url id</td>
+</tr>
+<tr>
+<td>vehicleColor</td>
+<td>Fill with vehicleColor object url id</td>
+</tr>
+<tr>
+<td>vehicleSerie</td>
+<td>Fill with vehicleSerie object url id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="update-vehicle">Update Vehicle</h2>
+
+<p>This endpoint used to update a vehicle object. It can update using <code>PUT</code> for full update or <code>PATCH</code> for partial update</p>
+
+<blockquote>
+<p>Sample request PUT</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/vehicles/fa6a0d05-b700-47d8-abf9-1e19b250fd71"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "engineNumber":"R27T54318888",
+        "chassisNumber":"ASDFG12309Y877458",
+        "certificateNumber":"B4352282728928",
+        "plateNumber":"B 7788 KKK",
+        "yearModel":"2010",
+        "vehicleSerie": "http://localhost:8080/api/vehicle-series/1",
+        "vehicleColor" : "http://localhost:8080/api/vehicle-colors/1",
+        "vehicleAssembly":"http://localhost:8080/api/vehicle-assemblies/1"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample request PATCH</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/vehicle/fa6a0d05-b700-47d8-abf9-1e19b250fd71"</span>
+  -X PATCH
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "engineNumber":"R27T54318888"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"engineNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R27T54318888"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"chassisNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASDFG12309Y877458"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"certificateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B4352282728928"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"plateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B 7788 KKK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"yearModel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2010"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicles/fa6a0d05-b700-47d8-abf9-1e19b250fd71{?projection}"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"vehicleAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-assemblies/1"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"vehicleColor"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-colors/1"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"vehicleSerie"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-series/1{?projection}"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"templated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://localhost:8080/api/vehicles/&lt;vehicleId&gt;</code></p>
+
+<p><code class="prettyprint">PATCH http://localhost:8080/api/vehicles/&lt;vehicleId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vehicleId</td>
+<td>Selected vehicle id</td>
+</tr>
+</tbody></table>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>engineNumber</td>
+<td>Fill with vehicle engine number</td>
+</tr>
+<tr>
+<td>chassisNumber</td>
+<td>Fill with vehicle chassis number</td>
+</tr>
+<tr>
+<td>certificateNumber</td>
+<td>Fill with vehicle certificate number</td>
+</tr>
+<tr>
+<td>plateNumber</td>
+<td>Fill with vehicle plate number</td>
+</tr>
+<tr>
+<td>yearModel</td>
+<td>Fill with vehicle year model</td>
+</tr>
+<tr>
+<td>vehicleAssembly</td>
+<td>Fill with vehicleAssembly object url id</td>
+</tr>
+<tr>
+<td>vehicleColor</td>
+<td>Fill with vehicleColor object url id</td>
+</tr>
+<tr>
+<td>vehicleSerie</td>
+<td>Fill with vehicleSerie object url id</td>
+</tr>
+</tbody></table>
+
+          <h2 id="delete-a-specific-vehicle">Delete a Specific Vehicle</h2>
+
+<p>This endpoint delete vehicle object by <code>vehicleId</code></p>
+
+<blockquote>
+<p>Sample request </p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/vehicles/fa6a0d05-b700-47d8-abf9-1e19b250fd71"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"deleted"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Failed response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"because"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://localhost:8080/api/vehicles/&lt;vehicleId&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vehicleId</td>
+<td>Selected vehicle id</td>
+</tr>
+</tbody></table>
+
+          <h1 id="errors">Errors</h1>
+
+<p>The Umbrella API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request sucks</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified kitten could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
