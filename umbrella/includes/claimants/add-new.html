@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_claimants includes_claimants_add-new">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../../images/logo.png" />
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h2 id="add-new-claimant">Add New Claimant</h2>
+
+<p>This endpoint will create new claimant.</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>  curl <span class="s2">"http://localhost:8080/api/claimants"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s1">'{
+    "claimantName" : "Nico Natalie",
+    "claimantAddress" : "Tanjung Duren",
+    "claimantPhone" : "123456",
+    "claimantFax" : "123456",
+    "claimantHandphone" : "123456",
+    "claimantEmail" : "asd@asd.com",
+    "relation" : "http://localhost:8080/api/relations/1"
+  }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"claimantName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Nico Natalie"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"claimantAddress"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Tanjung Duren"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"claimantPhone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"claimantFax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"claimantHandphone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"claimantEmail"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"asd@asd.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"self"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/claimants/0bf56d35-1dc2-4826-a6e0-9e67397c6283{?projection}"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"templated"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"relation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/relations/1"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://localhost:8080/api/claimants</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>claimantName</td>
+<td>New claimant name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>claimantAddress</td>
+<td>New claimant address</td>
+<td>String</td>
+</tr>
+<tr>
+<td>claimantPhone</td>
+<td>New claimant phone</td>
+<td>String</td>
+</tr>
+<tr>
+<td>claimantFax</td>
+<td>New claimant fax</td>
+<td>String</td>
+</tr>
+<tr>
+<td>claimantHandphone</td>
+<td>New claimant handphone</td>
+<td>String</td>
+</tr>
+<tr>
+<td>claimantEmail</td>
+<td>New claimant email</td>
+<td>String</td>
+</tr>
+<tr>
+<td>relation</td>
+<td>Relation object url</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

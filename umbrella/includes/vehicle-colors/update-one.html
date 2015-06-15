@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_vehicle-colors includes_vehicle-colors_update-one">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../../images/logo.png" />
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h2 id="update-vehicle-color">Update Vehicle Color</h2>
+
+<p>This endpoint used to update a vehicle color object. It can update using <code>PUT</code> for full update or <code>PATCH</code> for partial update</p>
+
+<blockquote>
+<p>Sample request PUT</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/vehicle-colors/1"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "vehicleColorName":"Red"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample request PATCH</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/vehicle-colors/1"</span>
+  -X PATCH
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "vehicleColorName":"Red"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"vehicleColorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Red"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/vehicle-colors/1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://localhost:8080/api/vehicle-colors/{vehicleColorId}</code></p>
+
+<p><code class="prettyprint">PATCH http://localhost:8080/api/vehicle-colors/{vehicleColorId}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vehicleColorId</td>
+<td>Selected vehicle color id</td>
+</tr>
+</tbody></table>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vehicleColorName</td>
+<td>Fill with vehicle color name</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

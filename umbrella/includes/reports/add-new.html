@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_reports includes_reports_add-new">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../../images/logo.png" />
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h2 id="add-new-report">Add New Report</h2>
+
+<p>This endpoint will create new report.</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/reports"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -d <span class="s1">'{
+    "reportDate" : "2015-05-05",
+    "reportedBy" : "Nico Natalie",
+    "reportNote" : "",
+    "ownRisk" : 5000,
+    "reportChannel" : "http://localhost:8080/api/report-channels/1",
+    "lossCausal" : "http://localhost:8080/api/loss-causals/1",
+    "premium" : "http://localhost:8080/api/premiums/81546689-a608-40be-815a-f42db7791231",
+    "survey" : "http://localhost:8080/api/surveys/5858a7b2-c7ac-464d-8cea-393c291965ae",
+    "claimant" : "http://localhost:8080/api/claimants/0bf56d35-1dc2-4826-a6e0-9e67397c6283",
+    "driver" : "http://localhost:8080/api/drivers/5fc53083-4d3e-4546-97b8-b2cfd23612cc",
+    "csEmployee" : "http://localhost:8080/api/employees/045d9baa-2c68-4390-a385-a4bfef33e9dd",
+    "csStatus" : "http://localhost:8080/api/cs-statuses/1",
+    "surveyorEmployee" : "http://localhost:8080/api/employees/0f9f0bfa-3e67-498c-bb5d-84a94b56d804",
+    "surveyorStatus" : "http://localhost:8080/api/surveyorStatuses/1",
+    "workshop" : "http://localhost:8080/api/workshops/42686B50-DB64-4884-85F5-075C19AB92A0",
+    "workshopStatus" : "http://localhost:8080/api/workshop-statuses/1",
+    "reportStatus" : "http://localhost:8080/api/report-statuses/1"
+  }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"reportDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-08"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reportedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nico Natalie"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"reportNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ownRisk"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"workshop"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"workshopId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42686B50-DB64-4884-85F5-075C19AB92A0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"onlineDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-02"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"workshopEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oto@oto.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567880"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isSupplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isFeeSystem"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"workshopName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OTO 1234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"workshopFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"021-6661234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"workshopPic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ridwan"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isOnline"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"workshopPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"021-5554422"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"workshopPicTitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manager"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"feeSystemValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"workshopAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TANJUNG DUREN SELATAN"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"workshopPicHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08123412334"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"workshopCategory"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"workshopCategoryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AFFILIATED"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"workshopDetail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"workshopManager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nico Natalie"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"workshopManagerHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"082120500834"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceAdvisor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"David Eko"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"financeManager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Immanuel Resha"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"financeManagerHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234564455"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceAdvisorPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789001"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"bankName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BANK CENTRAL ASIA"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"cityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JAKARTA"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"workshopFee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"pph23"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sparePartServicePercentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sparePartPpn"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sparePartPercentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"sparePartDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"servicePpn"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"servicePercentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"serviceDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"salvageDiscount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"isTaxIncluded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"tin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"taxIdentificationName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASURANSI UMUM BCA"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"taxIdentificationAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GEDUNG WTC MANGGA 2 LT 3A BLOK CL003"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"claimant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"claimantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0bf56d35-1dc2-4826-a6e0-9e67397c6283"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"claimantFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"claimantName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nico Natalie"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"claimantPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"claimantEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asd@asd.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"claimantHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"claimantAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tanjung Duren"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"relation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"relationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Owner"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"reportChannel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/reportChannel"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"driver"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/driver"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"survey"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/survey"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"claimant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/claimant"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"surveyorEmployee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/surveyorEmployee"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"reportStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/reportStatus"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"csStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/csStatus"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"surveyorStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/surveyorStatus"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/premium"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"workshopStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/workshopStatus"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"lossCausal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/lossCausal"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"csEmployee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/csEmployee"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"workshop"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/reports/2d451f4e-9547-4691-8193-1eb32dc16e4a/workshop"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://localhost:8080/api/reports</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reportDate</td>
+<td>Date of report</td>
+<td>String</td>
+</tr>
+<tr>
+<td>reportedBy</td>
+<td>Name of reporter</td>
+<td>String</td>
+</tr>
+<tr>
+<td>reportNote</td>
+<td>Report notes (optional)</td>
+<td>String</td>
+</tr>
+<tr>
+<td>ownRisk</td>
+<td>Total own risk (calculated)</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>reportChannel</td>
+<td>Report channel object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>lossCausal</td>
+<td>Loss causal object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>premium</td>
+<td>Premium object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>survey</td>
+<td>Survey object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>claimant</td>
+<td>Claimant object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>driver</td>
+<td>Driver object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>csEmployee</td>
+<td>Employee object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>csStatus</td>
+<td>Cs status object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>surveyorEmployee</td>
+<td>Employee object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>surveyorStatus</td>
+<td>Surveyor object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>workshop</td>
+<td>Workshop object url</td>
+<td>String</td>
+</tr>
+<tr>
+<td>workshopStatus</td>
+<td>Workshop status object url</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

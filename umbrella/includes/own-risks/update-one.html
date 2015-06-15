@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_own-risks includes_own-risks_update-one">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../../images/logo.png" />
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h2 id="update-own-risk">Update Own Risk</h2>
+
+<p>This endpoint used to update a own risk object. It can update using <code>PUT</code> for full update or <code>PATCH</code> for partial update</p>
+
+<blockquote>
+<p>Sample request PUT</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/own-risks/1"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "ownRiskType":"Erosion"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample request PATCH</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/own-risks/1"</span>
+  -X PATCH
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "ownRiskType":"Erosion"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ownRiskType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Erosion"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/own-risks/1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">###</span><span class="w"> </span><span class="err">HTTP</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="err">`PUT</span><span class="w"> </span><span class="err">http://localhost:</span><span class="mi">8080</span><span class="err">/api/own-risks/</span><span class="p">{</span><span class="err">ownRiskId}`</span><span class="w">
+
+</span><span class="err">`PATCH</span><span class="w"> </span><span class="err">http://localhost:</span><span class="mi">8080</span><span class="err">/api/own-risks/</span><span class="p">{</span><span class="err">ownRiskId}`</span><span class="w">
+
+</span><span class="err">###</span><span class="w"> </span><span class="err">URL</span><span class="w"> </span><span class="err">Parameters</span><span class="w">
+
+</span><span class="err">Parameter</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">Description</span><span class="w">
+</span><span class="err">---------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">-----------</span><span class="w">
+</span><span class="err">ownRiskId</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">Selected</span><span class="w"> </span><span class="err">own</span><span class="w"> </span><span class="err">risk</span><span class="w"> </span><span class="err">id</span><span class="w">
+
+</span><span class="err">###</span><span class="w"> </span><span class="err">Parameters</span><span class="w">
+
+</span><span class="err">Parameter</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">Description</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">Format</span><span class="w"> 
+</span><span class="err">---------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">-----------</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">------</span><span class="w"> 
+</span><span class="err">ownRiskType</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">Fill</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">own</span><span class="w"> </span><span class="err">risk</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">String</span><span class="w">
+</span></code></pre>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

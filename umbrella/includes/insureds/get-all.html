@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_insureds includes_insureds_get-all">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../../images/logo.png" />
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="insureds">Insureds</h1>
+
+<h2 id="get-all-insureds">Get All Insureds</h2>
+
+<p>This endpoint used to return all insureds</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/insureds"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"insureds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star Lord"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Galaxy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218875645"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56789844"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0888888811"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@this.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/00e227f3-5469-4e3d-ad7a-4c79833358e4"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"insuredName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joe West"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bekasi"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0218861234"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredFax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredHandphone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0855778899"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"insuredEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this@test.com"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/insureds/f1466d54-d6bd-4718-9893-3fdba5bce606"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/insureds</code></p>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

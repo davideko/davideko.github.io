@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_accidents includes_accidents_update-one">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../../images/logo.png" />
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h2 id="update-accident">Update Accident</h2>
+
+<p>This endpoint used to update a accident object. It can update using <code>PUT</code> for full update or <code>PATCH</code> for partial update</p>
+
+<blockquote>
+<p>Sample request PUT</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/accidents/3f016e51-07db-42ea-b20b-822b0a6eecdb"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "accidentDate":"2015-06-14",
+        "accidentLocation":"Jakarta",
+        "vehicleSpeed":"100",
+        "damage":"100000",
+        "policeStation":"Polda Slipi",
+        "witnesses":"none",
+        "vehicleUsage":"casual",
+        "lossCategory":"http://localhost:8080/api/loss-categories/1",
+        "city":"http://localhost:8080/api/cities/1",
+        "tpl":"http://localhost:8080/api/tpls/",
+        "report":"http://localhost:8080/api/reports/"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Sample request PATCH</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"http://localhost:8080/api/accidents/3f016e51-07db-42ea-b20b-822b0a6eecdb"</span>
+  -X PATCH
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s1">'{
+        "policeStation":"Polda Slipi"
+      }'</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"accidentDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-14"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"accidentLocation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jakarta"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vehicleSpeed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"damage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"policeStation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Polda Slipi"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"witnesses"</span><span class="p">:</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vehicleUsage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"casual"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_embedded"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"tpl"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"tplValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tplAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pulogadung"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tplDamage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full damage"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tplName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jon Snow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tplPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08598887898"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tplMake"</span><span class="p">:</span><span class="w"> </span><span class="s2">"insured"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tplCategory"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"tplCategoryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Type 1"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"tplId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7d55e8c2-4eca-4f11-b74c-64d8f36775a6"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tplPlateNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B 8888 KKK"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/accidents/3f016e51-07db-42ea-b20b-822b0a6eecdb"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"lossCategory"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/accidents/3f016e51-07db-42ea-b20b-822b0a6eecdb/lossCategory"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"tpl"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/accidents/3f016e51-07db-42ea-b20b-822b0a6eecdb/tpl"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"report"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/accidents/3f016e51-07db-42ea-b20b-822b0a6eecdb/report"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/accidents/3f016e51-07db-42ea-b20b-822b0a6eecdb/city"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://localhost:8080/api/accidents/{accidentId}</code></p>
+
+<p><code class="prettyprint">PATCH http://localhost:8080/api/accidents/{accidentId}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accidentId</td>
+<td>Selected accident id</td>
+</tr>
+</tbody></table>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accidentDate</td>
+<td>Fill with accident date</td>
+<td>String (date/datetime)</td>
+</tr>
+<tr>
+<td>accidentLocation</td>
+<td>Fill with accident location</td>
+<td>String</td>
+</tr>
+<tr>
+<td>vehicleSpeed</td>
+<td>Fill with vehicle speed</td>
+<td>String</td>
+</tr>
+<tr>
+<td>damage</td>
+<td>Fill with damage</td>
+<td>String</td>
+</tr>
+<tr>
+<td>policeStation</td>
+<td>Fill with police station</td>
+<td>String</td>
+</tr>
+<tr>
+<td>witnesses</td>
+<td>Fill with witnesses</td>
+<td>String</td>
+</tr>
+<tr>
+<td>vehicleUsage</td>
+<td>Fill with vehicle usage</td>
+<td>String</td>
+</tr>
+<tr>
+<td>lossCategory</td>
+<td>Fill with loss category object url id</td>
+<td>String</td>
+</tr>
+<tr>
+<td>city</td>
+<td>Fill with city object url id</td>
+<td>String</td>
+</tr>
+<tr>
+<td>tpl</td>
+<td>Fill with tpl object url id</td>
+<td>String</td>
+</tr>
+<tr>
+<td>report</td>
+<td>Fill with report object url id</td>
+<td>String</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

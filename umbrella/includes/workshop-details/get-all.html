@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_workshop-details includes_workshop-details_get-all">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../../images/logo.png" />
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="workshop-detail">Workshop Detail</h1>
+
+<h2 id="get-all-workshop-details">Get All Workshop Details</h2>
+
+<p>This endpoint retrieves all workshop details.</p>
+
+<blockquote>
+<p>Sample request</p>
+</blockquote>
+<pre class="highlight shell"><code>  curl <span class="s2">"http://localhost:8080/api/workshop-details"</span>
+  -H <span class="s2">"Authorization: Bearer &lt;token&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_embedded"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"workshopDetails"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"workshopManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Nico Natalie"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"workshopManagerHandphone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"082120500834"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"serviceAdvisor"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"David Eko"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"financeManager"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Immanuel Resha"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"financeManagerHandphone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1234564455"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"serviceAdvisorPhone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_links"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"href"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080/api/workshop-details/4CFEADB9-EAF8-48A7-808A-0CF141A8B99D"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://localhost:8080/api/workshop-details</code></p>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
